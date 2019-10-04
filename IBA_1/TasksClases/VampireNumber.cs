@@ -58,6 +58,7 @@ namespace IBA_1.TasksClases
             return existVampire;
         }
 
+
         /// <summary>
         /// работает из мат утверждения для любого числа:
         /// 1573 = 3*100 + 7*101 + 5*102 + 1*103.
@@ -133,6 +134,13 @@ namespace IBA_1.TasksClases
             return false;
         }
 
+        /// <summary>
+        /// проверяет действительно ли число является числом-вампиром
+        /// </summary>
+        /// <param name="i"></param>
+        /// <param name="pairs"></param>
+        /// <param name="iMs"></param>
+        /// <returns></returns>
         public static int[] IsRealMakeVimpireNumber(int i,List<int> pairs, int[] iMs)
         {
             int j, jj;
