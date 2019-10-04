@@ -42,6 +42,12 @@ namespace IBA_1
                             }
                             break;
 
+                    case 3:
+                        // work with words
+                        Console.WriteLine(TextLetters.getCountVowels("uiggddbifsa"));
+
+                        break;
+
                 }
             }
 

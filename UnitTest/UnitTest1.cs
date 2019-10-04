@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using IBA_1.TasksClases;
 using System.Collections.Generic;
+using System.Text;
 
 namespace UnitTest
 {
@@ -57,4 +58,24 @@ namespace UnitTest
         }
 
     }
+
+    [TestClass]
+    public class TextLetters_UnitTest
+    { 
+
+        [TestMethod]
+        public void getCountVowelsText_Test()
+        {
+            float expected = (4 *100)/11;
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append("uiggddbifsa");
+
+            float actual = TextLetters.getCountVowels(sb);
+
+            Assert.AreEqual(expected, actual);
+
+        }
+    }
+
 }
