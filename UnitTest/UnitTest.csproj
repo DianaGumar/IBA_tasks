@@ -56,9 +56,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IBA_1\IBA_1.csproj">
-      <Project>{99341223-2301-4109-8e14-5deb9e87d0ae}</Project>
-      <Name>IBA_1</Name>
+    <ProjectReference Include="..\Task7\Task7.csproj">
+      <Project>{9bc86ff6-e0b6-4508-b76c-1f7290671344}</Project>
+      <Name>Task7</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

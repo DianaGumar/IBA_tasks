@@ -1,0 +1,30 @@
+﻿<Window x:Class="Numbers_wpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Numbers_wpf"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="337" Width="475"  ResizeMode="NoResize">
+    <Grid Margin="10,10,13,18" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="226*"/>
+            <RowDefinition Height="43*"/>
+            <RowDefinition Height="11*"/>
+        </Grid.RowDefinitions>
+        <TextBox Margin="251,14,25,178" Name="textBox_user" ></TextBox>
+
+        <TextBox  Name="textBox_task" Margin="22,179,25,0" ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Height="78" VerticalAlignment="Top" Grid.RowSpan="2" ></TextBox>
+        <TextBox Name="textBox_unsver" Margin="251,63,25,0"  ScrollViewer.VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" Height="99" VerticalAlignment="Top"></TextBox>
+        <ListBox Name="phonesList" Margin="22,14,221,0" Height="148" VerticalAlignment="Top">
+            <TextBlock FontWeight="Bold" TextDecorations="Underline" Text="Tasks" />
+            <ListBoxItem MouseDoubleClick="task1" Background="LightGray" >Vimpire numbers</ListBoxItem>
+            <ListBoxItem MouseDoubleClick="task2">Fibonacci sequens</ListBoxItem>
+            <ListBoxItem MouseDoubleClick="task3" Background="LightGray" >Text vowels</ListBoxItem>
+            <ListBoxItem>4</ListBoxItem>
+            <ListBoxItem Background="LightGray">5</ListBoxItem>
+            <ListBoxItem>6</ListBoxItem>
+            <ListBoxItem Background="LightGray">7</ListBoxItem>
+        </ListBox>
+    </Grid>
+</Window>
