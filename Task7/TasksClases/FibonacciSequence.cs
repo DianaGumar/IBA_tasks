@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IBA_1.TasksClases
+namespace Task7.TasksClases
 {
     public static class FibonacciSequence
     {

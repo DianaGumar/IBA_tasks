@@ -1,4 +1,4 @@
-﻿using IBA_1.TasksClases;
+﻿using Task7.TasksClases;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,6 +72,7 @@ namespace Numbers_wpf
                 "output will be: 1, 1, 2, 3, 5.";
 
         }
+
         private void task3(object sender, RoutedEventArgs e)
         {
             // work with words
@@ -87,6 +88,10 @@ namespace Numbers_wpf
 
         private void task4(object sender, RoutedEventArgs e)
         {
+
+            if(textBox_user.Text != "")
+                textBox_unsver.Text = TextLetters.translateExpression(textBox_user.Text).ToString();
+            else textBox_unsver.Text = TextLetters.translateExpression("+U+n+c--+e+r+t--+a-+i-+n+t+y--+ -+r+u--+l+e+s--").ToString();
 
             textBox_task.Text = "4. Stacks are often used to evaluate expressions " +
                 "in programming languages. Evaluate the following expression, " +

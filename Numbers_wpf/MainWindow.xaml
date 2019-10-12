@@ -21,7 +21,7 @@
             <ListBoxItem MouseDoubleClick="task1" Background="LightGray" >Vimpire numbers</ListBoxItem>
             <ListBoxItem MouseDoubleClick="task2" >Fibonacci sequens</ListBoxItem>
             <ListBoxItem MouseDoubleClick="task3" Background="LightGray" >Text vowels</ListBoxItem>
-            <ListBoxItem MouseDoubleClick="task4" >4</ListBoxItem>
+            <ListBoxItem MouseDoubleClick="task4" >Expressions</ListBoxItem>
             <ListBoxItem MouseDoubleClick="task5" Background="LightGray">5</ListBoxItem>
             <ListBoxItem MouseDoubleClick="task6" >6</ListBoxItem>
             <ListBoxItem MouseDoubleClick="task7" Background="LightGray">7</ListBoxItem>

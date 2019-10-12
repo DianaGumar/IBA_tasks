@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IBA_1.TasksClases
+namespace Task7.TasksClases
 {
     public static class TextLetters
     {
@@ -68,6 +68,39 @@ namespace IBA_1.TasksClases
 
             return prosent;
         }
+
+
+        // + push    - pop
+        // "+U+n+c--+e+r+t--+a-+i-+n+t+y--+ -+r+u--+l+e+s--"
+
+        public static StringBuilder translateExpression(string word)
+        {
+            Stack<string> stack = new Stack<string>();
+            StringBuilder stackUnsver = new StringBuilder();
+
+            List<Char> txt = new List<Char>();
+            txt.AddRange(word.ToCharArray());
+
+            for (int i = 0; i < txt.Count; i++)
+            {
+                if(txt.ElementAt(i) == char.Parse("+"))
+                {
+                    try { stack.Push(txt.ElementAt(i + 1).ToString()); }
+                    catch { break; }
+                    i++;
+                }
+                if(txt.ElementAt(i) == char.Parse("-"))
+                {
+                    try { stackUnsver.Append(stack.Pop()); }
+                    catch { stackUnsver.Append("0");  }
+
+                }
+            }
+
+            return stackUnsver;
+        }
+
+
 
     }
 }
