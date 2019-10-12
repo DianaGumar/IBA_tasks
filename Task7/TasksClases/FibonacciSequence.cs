@@ -8,9 +8,10 @@ namespace IBA_1.TasksClases
 {
     public static class FibonacciSequence
     {
-
         public static int[] getFibonacci(int count)
         {
+            count = Math.Abs(count);
+
             int[] fibonacci = new int[count];
 
             for(int i = 0; i < count; i++)

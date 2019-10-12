@@ -11,10 +11,20 @@ namespace Numbers_wpf
     /// </summary>
     public partial class MainWindow : Window
     {
+
+
         public MainWindow()
         {
             InitializeComponent();
         }
+
+        private int ValidInspector(String str)
+        {
+            int value = 0;
+            int.TryParse(str, out value);
+            return value;
+        }
+
 
         private void task1(object sender, RoutedEventArgs e)
         {
@@ -22,6 +32,9 @@ namespace Numbers_wpf
 
             //1 vampire number
             List<int> vn = VampireNumber.GetExistVampireNumber(4);
+
+            //vn.ForEach(value => textBox_unsver.Text += value);
+
             for (int i = 0; i < vn.Count; i += 3)
             {
                 textBox_unsver.Text += vn.ElementAt(i) + " = " + vn.ElementAt(i + 1) + " * " + vn.ElementAt(i + 2) + "\n";
@@ -41,10 +54,11 @@ namespace Numbers_wpf
             textBox_unsver.Text = "";
 
             //2 Fibonacci sequence
-            int[] fibonacci = FibonacciSequence.getFibonacci(int.Parse(textBox_user.Text));
-            for (int i = 0; i < fibonacci.Length; i++)
+            int[] fibonacci = FibonacciSequence.getFibonacci(ValidInspector(textBox_user.Text));
+            
+            foreach (int i in fibonacci)
             {
-                textBox_unsver.Text += fibonacci[i] + " ";
+                textBox_unsver.Text += i + " ";
             }
 
             textBox_task.Text = "2.  A Fibonacci sequence is the sequence of numbers" +
@@ -61,7 +75,8 @@ namespace Numbers_wpf
         private void task3(object sender, RoutedEventArgs e)
         {
             // work with words
-            //защита от неверного ввода
+            //todo защита от неверного ввода
+
             textBox_unsver.Text = TextLetters.getCountVowels(textBox_user.Text) + "%";
 
             textBox_task.Text = "3.Create a Set of the vowels.Count and " +
@@ -70,6 +85,45 @@ namespace Numbers_wpf
 
         }
 
+        private void task4(object sender, RoutedEventArgs e)
+        {
+
+            textBox_task.Text = "4. Stacks are often used to evaluate expressions " +
+                "in programming languages. Evaluate the following expression, " +
+                "where’+’ means 'push the following letter onto the stack,' " +
+                "and’-’ means 'pop the top of the stack and print it'" +
+                ": ' + U + n + c—+e + r + t—+a - +i - +n + t + y—+-+r + u—+l + e + s—'";
+
+        }
+
+        private void task5(object sender, RoutedEventArgs e)
+        {
+
+            textBox_task.Text = "5. Look up the Iterator in the documentation. " +
+                "Develop own Iterator, that can work with Collection data types";
+        }
+        private void task6(object sender, RoutedEventArgs e)
+        {
+
+            textBox_task.Text = "6. Need to use Dictionary for two List, " +
+                "it holds a single List objects. Verify that the " +
+                "modified version works correctly. Test the speed " +
+                "of your new Dictionary. Now change the add( ) method " +
+                "so that it performs a sort( ) after each pair is entered." +
+                " Compare the performance of the new version with the old ones";
+        }
+        private void task7(object sender, RoutedEventArgs e)
+        {
+
+            textBox_task.Text = "7. Create a new source file. In a method, declare a variable " +
+                "temperatures of type List. (The C# collection type List is similar to Java’s ArrayList). " +
+                "Add some numbers to the list. Write a foreach loop to count the number of " +
+                "temperatures that equal or exceed 25 degrees. Write a method GreaterCount with " +
+                "signature static int GreaterCount(List list, double min) { ... } that returns " +
+                "the number of elements of list that are greater than or equal to min. Note that " +
+                "the method is not generic, but the type of one of its parameters is a type instance " +
+                "of the generic type List. Call the method on your temperatures list.";
+        }
 
 
     }
