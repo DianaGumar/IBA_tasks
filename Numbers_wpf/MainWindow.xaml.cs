@@ -104,6 +104,9 @@ namespace Numbers_wpf
         private void task5(object sender, RoutedEventArgs e)
         {
 
+
+
+
             textBox_task.Text = "5. Look up the Iterator in the documentation. " +
                 "Develop own Iterator, that can work with Collection data types";
         }

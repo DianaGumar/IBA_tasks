@@ -9,6 +9,13 @@ namespace Task7.TasksClases
     public static class TextLetters
     {
 
+        /*
+        3. Create a Set of the vowels. Count and display the number of vowels
+        in each input word, and also display the total number of vowels 
+        in the input text, percent of each of them. 
+      
+        */
+
         //static List<string> vowels = new List<string>() { "a", "e", "i", "o", "u" };
 
         static Dictionary<int, String> vowels = new Dictionary<int, string>
@@ -69,6 +76,14 @@ namespace Task7.TasksClases
             return prosent;
         }
 
+
+
+        /*
+        4. Stacks are often used to evaluate expressions in programming languages.
+        Evaluate the following expression, where’+’ means "push the following letter 
+        onto the stack," and’-’ means "pop the top of the stack and print it":
+        "+U+n+c—+e+r+t—+a-+i-+n+t+y—+ -+r+u—+l+e+s—"             
+        */
 
         // + push    - pop
         // "+U+n+c--+e+r+t--+a-+i-+n+t+y--+ -+r+u--+l+e+s--"
