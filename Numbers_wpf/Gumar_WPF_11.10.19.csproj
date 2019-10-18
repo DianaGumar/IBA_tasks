@@ -94,9 +94,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Task7\Task7.csproj">
+    <ProjectReference Include="..\Task7\Gumar_1,2,3,4_02.10.19.csproj">
       <Project>{9bc86ff6-e0b6-4508-b76c-1f7290671344}</Project>
-      <Name>Task7</Name>
+      <Name>Gumar_1,2,3,4_02.10.19</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
