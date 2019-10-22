@@ -14,6 +14,12 @@ namespace Task7.TasksClases
         in each input word, and also display the total number of vowels 
         in the input text, percent of each of them. 
       
+
+        6. Need to use Dictionary for two List, it holds a single List objects.
+        Verify that the modified version works correctly. Test the speed
+        of your new Dictionary. Now change the add( ) method so that it 
+        performs a sort( ) after each pair is entered. Compare the 
+        performance of the new version with the old ones
         */
 
         //static List<string> vowels = new List<string>() { "a", "e", "i", "o", "u" };
