@@ -13,9 +13,10 @@ namespace WebAPI_7915.Controllers
 
         public abstract List<E> reed(List<E> entity);
 
-        public static MySqlConnection GetConnection(string str)
+        public static MySqlConnection GetConnection(string DBName, string login, string password)
         {
-            str = "Server=localhost;Database=IBA;Uid=root;Pwd=1111";
+            //str = "Server=localhost;Database=IBA;Uid=root;Pwd=1111";
+            string str = "Server=localhost;Database=" + DBName + ";Uid=" + login + ";Pwd=" + password;
 
             MySqlConnection conn = new MySqlConnection(str);
 

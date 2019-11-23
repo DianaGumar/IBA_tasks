@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebAPI_7915.Models.MiddleWare;
 
 namespace WebAPI_7915
 {
@@ -35,7 +36,7 @@ namespace WebAPI_7915
             app.UseHttpsRedirection();
             app.UseRouting();
 
-            app.UseMiddleware<Classes.DBMiddleWare>();
+            app.UseMiddleware<DBMiddleWare>();
 
             app.UseEndpoints(endpoints =>
             {
@@ -55,11 +56,12 @@ namespace WebAPI_7915
         {
             //string detiles = context.Request.QueryString.Value;
 
-            string sql_all = "str=1    SELECT * FROM books";
-            string sql_where = "str=2  SELECT * FROM books WHERE bookPages > 20";
+            string str = "?sql='SELECT * FROM books'&DBName='IBA'&login='root'&password='1111'";
+            string sql_where = "sql         SELECT * FROM books WHERE bookPages > 20";
+            //string connectStr = "connectStr  Server = localhost; Database = IBA; Uid = root; Pwd = 1111";
 
             context.Response.ContentType = "text/html;charset=utf-8";
-            await context.Response.WriteAsync($"{sql_all}<br>{sql_where}<br>");
+            await context.Response.WriteAsync($"{str}<br>{sql_where}<br>");
         }
         
     }
