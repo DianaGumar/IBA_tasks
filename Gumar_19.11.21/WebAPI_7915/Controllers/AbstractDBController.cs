@@ -11,7 +11,9 @@ namespace WebAPI_7915.Controllers
     public abstract class AbstractDBController<E, K>
     {
 
-        public abstract List<E> reed(List<E> entity);
+        public abstract E reed(K id); 
+        public abstract List<E> reed(); 
+        public abstract bool create(E entity);
 
         public static MySqlConnection GetConnection(string DBName, string login, string password)
         {

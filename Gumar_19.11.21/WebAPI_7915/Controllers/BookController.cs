@@ -14,48 +14,42 @@ namespace WebApi.Controllers
     [Route("[controller]")]
     public class BookController : ControllerBase
     {
-        //private readonly ILogger<BookAPIController> _logger;
-
-        //public BookAPIController(ILogger<BookAPIController> logger)
-        //{
-        //    _logger = logger;
-        //}
 
         [HttpGet]
-        public string Get()
+        public List<Book> Get()
         {
             BookDBController bc = new BookDBController("IBA", "root", "1111");
 
-            List<Book> books = bc.reed();
-            StringBuilder sb = new StringBuilder();
-            foreach (Book book in books)
-            {
-                sb.Append(book.ToString() + "\n");
-            }
-
-            return sb.ToString();
+            return bc.reed();
         }
 
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Book Get(int id)
         {
-            BookDBController bc = new BookDBController("IBA", "root" ,"1111");
+            BookDBController bc = new BookDBController("IBA", "root", "1111");
 
-            return bc.reed(id).ToString();
+            return bc.reed(id);
         }
 
-        //// POST api/users
         //[HttpPost]
-        //public IActionResult Post([FromBody]User user)
+        //public IActionResult Post([FromQuery]Book book)
         //{
-        //    if (user == null)
-        //    {
-        //        return BadRequest();
-        //    }
+        //    if (book == null) { return BadRequest(); }
 
-        //    db.Users.Add(user);
-        //    db.SaveChanges();
-        //    return Ok(user);
+        //    BookDBController bc = new BookDBController("IBA", "root", "1111");
+
+        //    if (bc.create(book)) { return Ok(book); }
+        //    else return BadRequest();
         //}
+
+
+        //https://localhost:44328/Book/IBA,root,1111,SELECT*FROM%20books%20where%20bookID=4
+        [HttpGet("{DBName},{login},{password},{sql}")]
+        public List<Book> Post(string DBName, string login, string password, string sql)
+        {
+            BookDBController bc = new BookDBController(sql, DBName, login , password);
+
+            return bc.getWhere();
+        }
     }
 }

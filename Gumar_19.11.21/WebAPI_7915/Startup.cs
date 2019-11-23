@@ -42,26 +42,8 @@ namespace WebAPI_7915
             {
                 endpoints.MapControllers();
 
-                //endpoints.MapGet("/", async context =>
-                //{
-                //    await Tip(context);
-                //});
             });
 
-        }
-
-
-        //tip for sql 
-        private async Task Tip(HttpContext context)
-        {
-            //string detiles = context.Request.QueryString.Value;
-
-            string str = "?sql='SELECT * FROM books'&DBName='IBA'&login='root'&password='1111'";
-            string sql_where = "sql         SELECT * FROM books WHERE bookPages > 20";
-            //string connectStr = "connectStr  Server = localhost; Database = IBA; Uid = root; Pwd = 1111";
-
-            context.Response.ContentType = "text/html;charset=utf-8";
-            await context.Response.WriteAsync($"{str}<br>{sql_where}<br>");
         }
         
     }

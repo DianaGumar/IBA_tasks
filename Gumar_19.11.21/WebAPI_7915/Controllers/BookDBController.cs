@@ -10,11 +10,12 @@ namespace WebAPI_7915.Controllers
 { 
 
     //слой подключения
-    public class BookDBController: AbstractDBController<Book, String>
+    public class BookDBController: AbstractDBController<Book, int>
     {
         public BookDBController(string sql, string DBName, string login, string password)
         {
-            this.sql = sql;
+
+            this.sql = sql.Replace("%", " ");
             this.DBName = DBName;
             this.login = login;
             this.password = password;
@@ -27,18 +28,22 @@ namespace WebAPI_7915.Controllers
             this.password = password;
         }
 
-        string sql;
-        string DBName;
-        string login;
-        string password;
+        private readonly string sql;
+        private readonly string DBName;
+        private readonly string login; 
+        private readonly string password;
 
 
         const string SELECT_WHERE = "SELECT * FROM books WHERE bookPages > 20";
         const string SELECT_BY_ID = "SELECT * FROM books WHERE bookID =";
         const string SELECT_ALL = "SELECT * FROM books";
 
-        public override List<Book> reed(List<Book> entity)
+
+        //need to be initialize string sql
+        public List<Book> getWhere()
         {
+            List<Book> entity = new List<Book>();
+
             MySqlConnection connection = GetConnection(DBName, login, password);
             try
             {
@@ -62,7 +67,7 @@ namespace WebAPI_7915.Controllers
             return entity;
         }
 
-        public List<Book> reed()
+        public override List<Book> reed()
         {
             List<Book> entity = new List<Book>();
 
@@ -89,7 +94,7 @@ namespace WebAPI_7915.Controllers
             return entity;
         }     
 
-        public Book reed(int id)
+        public override Book reed(int id)
         {
             Book entity = null;
             MySqlConnection connection = GetConnection(DBName, login, password);
@@ -115,5 +120,25 @@ namespace WebAPI_7915.Controllers
             return entity;
         }
 
+        public override bool create(Book entity)
+        {
+            int countRowUpdate = 0;
+            MySqlConnection connection = GetConnection(DBName, login, password);
+            try
+            {
+                connection.Open();
+                MySqlCommand command = 
+                    new MySqlCommand("insert into books(bookName, bookPages) " +
+                    "values('" + entity.Name + "'," + entity.Pages + ");", connection);
+
+                countRowUpdate = command.ExecuteNonQuery();
+
+            }
+            catch (Exception e) { Console.WriteLine(e.Message); }
+            finally { connection.Close(); }
+
+            if (countRowUpdate != 0) { return true; }
+            else return false;
+        }
     }
 }

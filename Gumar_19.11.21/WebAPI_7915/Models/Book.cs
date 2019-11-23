@@ -5,9 +5,15 @@ using System.Threading.Tasks;
 
 namespace WebAPI_7915.Models
 {
-    //класс-модель таблицы из бд
+    //klass-model from data base table
     public class Book
     {
+
+        public Book(string Name, int Pages)
+        {
+            this.Name = Name;
+            this.Pages = Pages;
+        }
 
         public Book(int ID, string Name, int Pages)
         {
@@ -17,9 +23,9 @@ namespace WebAPI_7915.Models
         }
 
 
-        int ID;
-        string Name;
-        int Pages;
+        int ID { get; }
+        public string Name { get; }
+        public int Pages { get; }
 
 
         public override string ToString()
