@@ -10,7 +10,7 @@ namespace WebAPI_7915.Controllers
 { 
 
     //слой подключения
-    public class BookDBController: DBController<Book, String>
+    public class BookDBController: AbstractDBController<Book, String>
     {
 
         public BookDBController(string sql, string connectStr)

@@ -8,7 +8,7 @@ namespace WebAPI_7915.Controllers
 {
 
     //Abstract dao controller
-    public abstract class DBController<E, K>
+    public abstract class AbstractDBController<E, K>
     {
 
         public abstract List<E> reed(List<E> entity);
