@@ -4,31 +4,31 @@ using System.Linq;
 using System.Data.SqlClient;
 using System.Data;
 using MySql.Data.MySqlClient;
+using WebAPI_7915.Classes;
 
-namespace WebAPI_7915.Classes
-{
+namespace WebAPI_7915.Controllers
+{ 
 
     //слой подключения
-    public class BookController: Controller<Book, String>
+    public class BookDBController: DBController<Book, String>
     {
 
-        public BookController(string sql)
+        public BookDBController(string sql, string connectStr)
         {
             this.sql = sql;
+            this.connectStr = connectStr;
         }
 
         string sql;
+        string connectStr;
+
 
         public override List<Book> reed(List<Book> entity)
-        {
-            //todo руализовать пул
-
-            MySqlConnection connection = GetConnection();
-            Console.WriteLine("start");
+        { 
+            MySqlConnection connection = GetConnection(this.connectStr);
             try
             {
                 connection.Open();
-                Console.WriteLine("open");
                 string sql = this.sql;
                 MySqlCommand command = new MySqlCommand(sql, connection);
 

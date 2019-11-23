@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebAPI_7915.Controllers;
 
 namespace WebAPI_7915.Classes
 {
@@ -16,32 +17,36 @@ namespace WebAPI_7915.Classes
             this.next = next;
         }
 
-        //организован обычный вывод на страницу.
         public async Task InvokeAsync(HttpContext context)
         {
             var str = context.Request.Query["str"];
+            var connectStr = context.Request.Query["connectStr"];
 
-            if (str == "1")
+            //status code 403- asses to resurs is denied
+            if (String.IsNullOrEmpty(str)) { context.Response.StatusCode = 403; }
+            else if (String.IsNullOrEmpty(connectStr)) { context.Response.StatusCode = 403; }
+            else if (str == "1")
             {
                 string sql = "SELECT* FROM books";
-                await context.Response.WriteAsync(Viev(sql));
-                //await context.Response.WriteAsync("hi");
+                context.Response.ContentType = "text/html;charset=utf-8";
+                await context.Response.WriteAsync(Viev(sql, connectStr));
             }
-            if (str == "2")
+            else if (str == "2")
             {
                 string sql = "SELECT * FROM books WHERE bookPages > 20";
-                await context.Response.WriteAsync(Viev(sql));
+                context.Response.ContentType = "text/html;charset=utf-8";
+                await context.Response.WriteAsync(Viev(sql, connectStr));
             }
             else 
             {
-                context.Response.StatusCode = 403;
-                await this.next(context); 
+                context.Response.StatusCode = 403;      
             }
+            await this.next(context);
         }
 
-        private string Viev(string sql)
+        private string Viev(string sql, string connectStr)
         {
-            BookController bc = new BookController(sql);
+            BookDBController bc = new BookDBController(sql, connectStr);
             List<Book> books = new List<Book>();
             books = bc.reed(books);
 
