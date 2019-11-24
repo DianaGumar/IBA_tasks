@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebAPI_7915.Models
+namespace WebAPI_7915.Models.Book
 {
     //klass-model from data base table
     public class Book
@@ -23,7 +23,7 @@ namespace WebAPI_7915.Models
         }
 
 
-        int ID { get; }
+        public int ID { get; }
         public string Name { get; }
         public int Pages { get; }
 

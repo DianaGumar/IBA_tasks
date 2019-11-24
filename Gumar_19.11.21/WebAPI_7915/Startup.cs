@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WebAPI_7915.Models.MiddleWare;
 
 namespace WebAPI_7915
 {
@@ -35,8 +34,6 @@ namespace WebAPI_7915
             app.UseDeveloperExceptionPage();
             app.UseHttpsRedirection();
             app.UseRouting();
-
-            app.UseMiddleware<DBMiddleWare>();
 
             app.UseEndpoints(endpoints =>
             {

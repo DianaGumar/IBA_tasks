@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Data.SqlClient;
-using System.Data;
 using MySql.Data.MySqlClient;
-using WebAPI_7915.Models;
+using WebAPI_7915.Models.DAO;
 
-namespace WebAPI_7915.Controllers
+namespace WebAPI_7915.Models.Book
 { 
 
     //слой подключения
@@ -15,7 +12,7 @@ namespace WebAPI_7915.Controllers
         public BookDBController(string sql, string DBName, string login, string password)
         {
 
-            this.sql = sql.Replace("%", " ");
+            this.sql = sql;
             this.DBName = DBName;
             this.login = login;
             this.password = password;

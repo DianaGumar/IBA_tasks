@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
-namespace WebAPI_7915.Controllers
+namespace WebAPI_7915.Models.DAO
 {
 
     //Abstract dao controller
