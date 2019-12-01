@@ -8,12 +8,12 @@ namespace WebAPI_7915.Models.DAO
 {
 
     //Abstract dao controller
-    public abstract class AbstractDBController<E, K>
+    public abstract class AbstractDAOLAyer<E, K>
     {
 
-        public abstract E reed(K id); 
-        public abstract List<E> reed(); 
-        public abstract bool create(E entity);
+        //public abstract E reed(K id); 
+        public abstract List<List<E>> reed(); 
+        //public abstract bool create(E entity);
 
         public static MySqlConnection GetConnection(string DBName, string login, string password)
         {
