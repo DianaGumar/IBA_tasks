@@ -19,6 +19,8 @@ namespace Export
         /// <param name=""></param>
         public static byte[] Export<T> (List<List<T>> data) 
         {
+            if(data == null || data.Count == 0) { return null; }
+
             byte[] fileContents;
             
             using (var package = new ExcelPackage())
@@ -42,7 +44,7 @@ namespace Export
                     #region  Header Row
                     for (j = 0; j < data.ElementAt(0).Count; j++)
                     {
-                        workSheet.Cells[i + 2, j + 1].Value = data[i][j];              
+                        workSheet.Cells[i + 1, j + 1].Value = data[i][j];              
                     }
                     #endregion
                     j = 0;

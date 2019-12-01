@@ -34,20 +34,33 @@ namespace WebAPI_7915.Models.DataBase
                 MySqlCommand command = new MySqlCommand(sql, connection);
 
                 MySqlDataReader reader = command.ExecuteReader();
+
+                int fieldCount = reader.FieldCount;
+
                 if (reader.HasRows)
                 {
+                    List<string> names = new List<string>();
+
+                    for(int i = 0; i < fieldCount; i++)
+                    {
+                        names.Add(reader.GetName(i));
+                    }
+                    entity.Add(names);
+
                     while (reader.Read())
                     {
-                        //добавить возможность считывать больше строк с помощью парсинга sql строки
-                        //или нет
                         List<string> inside = new List<string>();
-                        inside.Add(reader.GetInt32(0).ToString());
-                        inside.Add(reader.GetString(1));
-                        inside.Add(reader.GetInt32(2).ToString());
+
+                        for (int i = 0; i < fieldCount; i++)
+                        {
+                            inside.Add(reader.GetValue(i).ToString());
+                        }
 
                         entity.Add(inside);
-                        //reader.get
+                        
                     }
+
+                    reader.NextResult();
                 }
                 reader.Close();
 
