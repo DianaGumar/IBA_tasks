@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using MySql.Data.MySqlClient;
 
 namespace WebAPI_7915.Models.DAO
@@ -11,9 +12,7 @@ namespace WebAPI_7915.Models.DAO
     public abstract class AbstractDAOLAyer<E, K>
     {
 
-        //public abstract E reed(K id); 
-        public abstract List<E[]> reed(); 
-        //public abstract bool create(E entity);
+        public abstract List<E[]> reed();
 
         public static MySqlConnection GetConnection(string DBName, string login, string password)
         {

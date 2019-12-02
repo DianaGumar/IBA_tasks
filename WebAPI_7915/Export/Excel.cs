@@ -8,7 +8,6 @@ namespace Export
 {
     public class ExcelExport
     {
-
         public static string ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
         public static string FileDownloadName = $"{DateTime.Now.ToString("yyyy.MM.dd")}.xlsx";
 
@@ -17,21 +16,21 @@ namespace Export
         /// </summary>
         /// <param name="col">count colums</param>
         /// <param name=""></param>
-        public static byte[] Export<T> (List<List<T>> data) 
+        public static byte[] Export<T>(List<T[]> data)
         {
-            if(data == null || data.Count == 0) { return null; }
+            if (data == null || data.Count == 0) { return null; }
 
             byte[] fileContents;
-            
+
             using (var package = new ExcelPackage())
             {
                 var workSheet = package.Workbook.Worksheets.Add("Sheet1");
 
                 int j = 0;
- 
+
                 //for columns name's 
                 #region
-                for (j = 0; j < data.ElementAt(0).Count; j++)
+                for (j = 0; j < data.ElementAt(0).Length; j++)
                 {
                     workSheet.Cells[1, j + 1].Value = data[0][j];
                     workSheet.Cells[1, j + 1].Style.Font.Bold = true;
@@ -42,9 +41,9 @@ namespace Export
                 for (i = 1; i < data.Count; i++)
                 {
                     #region  Header Row
-                    for (j = 0; j < data.ElementAt(0).Count; j++)
+                    for (j = 0; j < data.ElementAt(0).Length; j++)
                     {
-                        workSheet.Cells[i + 1, j + 1].Value = data[i][j];              
+                        workSheet.Cells[i + 1, j + 1].Value = data[i][j];
                     }
                     #endregion
                     j = 0;
@@ -54,7 +53,7 @@ namespace Export
 
             }
 
-            return fileContents; 
+            return fileContents;
         }
 
 

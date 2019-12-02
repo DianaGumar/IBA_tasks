@@ -1,9 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Export;
 using Microsoft.AspNetCore.Mvc;
-using WebAPI_7915.Models.DataBase;
+using System;
+using System.Collections.Generic;
 using System.Linq;
-using Export;
+using System.Threading.Tasks;
+using WebApi.Models;
+using WebAPI_7915.Models.DataBase;
 
 namespace WebApi.Controllers
 {
@@ -13,12 +15,11 @@ namespace WebApi.Controllers
     {
 
         //medicine_full,root,1111,SELECT* FROM%20applyings
-        // IBA, root,1111,SELECT* FROM%20books
-        //   IBA, root,1111,SELECT%20bookID%20FROM%20books
-        //    Post? DBName = IBA & login = root & password = 1111 & sql = SELECT* FROM % 20books%20where%20bookID=4
+        // IBA,root,1111,SELECT*FROM%20books
+        //   IBA,root,1111,SELECT%20bookID%20FROM%20books     
 
         [HttpGet("{DBName},{login},{password},{sql}")]
-        public IActionResult Post(string DBName, string login, string password, string sql)
+        public IActionResult Get(string DBName, string login, string password, string sql)
         {
             DAOLayer bc = new DAOLayer(sql.Replace("%", " "), DBName, login, password);
 
@@ -39,66 +40,29 @@ namespace WebApi.Controllers
         }
 
 
-        //[HttpPost]
-        //public IActionResult Post2(
-        //    [FromBody]string DBName, 
-        //    [FromBody]string login, 
-        //    [FromBody]string password, 
-        //    [FromBody]string sql)
-        //{
-        //    DAOLayer bc = new DAOLayer(sql, DBName, login, password);
+        // Post?DBName=IBA&login=root&password=1111&sql=SELECT*FROM%20books
+        
+        public IActionResult Post([FromBody] Data dataUser)
+        //public IActionResult Post2([FromHeader]string DBName, [FromHeader]string login, [FromHeader]string password, [FromHeader]string sql)
+        {
+            DAOLayer bc = new DAOLayer(dataUser.SQL, dataUser.DBName, dataUser.Login, dataUser.Password);
+            //DAOLayer bc = new DAOLayer(sql, DBName, login, password);
 
-        //    List<Object[]> data = bc.reed();
-        //    byte[] fileContents = ExcelExport.Export(data);
+            List<Object[]> data = bc.reed();
+            byte[] fileContents = ExcelExport.Export(data);
 
-        //    if (fileContents == null)
-        //    {
-        //        return NotFound();
-        //    }
+            if (fileContents == null)
+            {
+                return NotFound();
+            }
 
-        //    return File(
-        //        fileContents: fileContents,
-        //        contentType: ExcelExport.ContentType,
-        //        fileDownloadName: ExcelExport.FileDownloadName
-        //        );
+            return File(
+                fileContents: fileContents,
+                contentType: ExcelExport.ContentType,
+                fileDownloadName: ExcelExport.FileDownloadName
+                );
 
-        //}
+        }
 
-
-
-        //    //-Method POST -Body (@{Login = "root"; Password = "1111"} | ConvertTo-Json) -ContentType "application/json"
-
-        //    [HttpPost]
-        //    public IActionResult Post([FromBody] Post post)
-        //    {
-
-        //        if(post == null)
-        //        {
-        //            return BadRequest();
-        //        }
-
-        //        return Ok(post);
-        //    }
-
-        //}
-
-
-        //public class Post
-        //{
-        //    //IBA,root,1111,SELECT%20bookID%20FROM%20books
-        //    public Post(string Login, string Password)
-        //    {
-        //        //this.DBName = DBName;
-        //        this.Login = Login;
-        //        this.Password = Password;
-        //        //this.SQL = SQL;
-        //    }
-
-        //    //public string DBName;
-        //    public string Login;
-        //    public string Password;
-        //    //public string SQL;
-        //}
     }
-
 }

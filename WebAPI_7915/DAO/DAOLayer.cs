@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
 using MySql.Data.MySqlClient;
 using WebAPI_7915.Models.DAO;
 
 namespace WebAPI_7915.Models.DataBase
 {
-    public class DAOLayer : AbstractDAOLAyer<string, int>
+    public class DAOLayer : AbstractDAOLAyer<Object, int>
     {
         public DAOLayer(string sql, string DBName, string login, string password)
         {
@@ -21,43 +22,41 @@ namespace WebAPI_7915.Models.DataBase
         private readonly string login;
         private readonly string password;
 
-        //need to be initialize string sql
-        public override List<List<string>> reed()
-        {
-            List<List<string>> entity = new List<List<string>>();
-            
 
+        public override List<Object[]> reed()
+        {
+            var loggerFactory = LoggerFactory.Create(builder =>
+            {
+                builder.AddConsole();
+            });
+
+            ILogger logger = loggerFactory.CreateLogger<DAOLayer>();
+
+
+            List<Object[]> entity = new List<Object[]>();
             MySqlConnection connection = GetConnection(DBName, login, password);
             try
             {
                 connection.Open();
                 MySqlCommand command = new MySqlCommand(sql, connection);
-
                 MySqlDataReader reader = command.ExecuteReader();
-
-                int fieldCount = reader.FieldCount;
 
                 if (reader.HasRows)
                 {
-                    List<string> names = new List<string>();
+                    Object[] names = new Object[reader.FieldCount];
 
-                    for(int i = 0; i < fieldCount; i++)
+                    for (int i = 0; i < reader.FieldCount; i++)
                     {
-                        names.Add(reader.GetName(i));
+                        names[i] = reader.GetName(i);
                     }
                     entity.Add(names);
 
                     while (reader.Read())
                     {
-                        List<string> inside = new List<string>();
-
-                        for (int i = 0; i < fieldCount; i++)
-                        {
-                            inside.Add(reader.GetValue(i).ToString());
-                        }
-
+                        Object[] inside = new Object[reader.FieldCount];
+                        reader.GetValues(inside);
                         entity.Add(inside);
-                        
+
                     }
 
                     reader.NextResult();
@@ -65,7 +64,10 @@ namespace WebAPI_7915.Models.DataBase
                 reader.Close();
 
             }
-            catch (Exception e) { Console.WriteLine(e.Message); }
+            catch (Exception e)
+            {
+                logger.Log(LogLevel.Error, "Connect to bd exeption: ", e.Message);             
+            }
             finally { connection.Close(); }
 
             return entity;

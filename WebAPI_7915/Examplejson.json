@@ -1,0 +1,7 @@
+{
+  "DBName": "IBA",
+  "Login": "root",
+  "Password": "1111",
+  "SQL": "SELECT * FROM books"
+}
+
